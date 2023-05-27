@@ -56,4 +56,16 @@ public class PersonaInputAdapterCli {
 	        .forEach(System.out::println);
 	}
 
+	public void createPerson(PersonaModelCli personaModelCli, String dbOption) {
+		log.info("Into crear PersonaEntity in Input Adapter");
+		try {
+			setPersonOutputPortInjection(dbOption);
+			personInputPort.create(personaMapperCli.fromAdapterCliToDomain(personaModelCli));
+			System.out.println("Person created.");
+		} catch (Exception e) {
+			log.warn(e.getMessage());
+			System.out.println("Error.");
+		}
+	}
+
 }

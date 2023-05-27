@@ -1,6 +1,7 @@
 package co.edu.javeriana.as.personapp.terminal.mapper;
 
 import co.edu.javeriana.as.personapp.common.annotations.Mapper;
+import co.edu.javeriana.as.personapp.domain.Gender;
 import co.edu.javeriana.as.personapp.domain.Person;
 import co.edu.javeriana.as.personapp.terminal.model.PersonaModelCli;
 
@@ -16,4 +17,22 @@ public class PersonaMapperCli {
 		personaModelCli.setEdad(person.getAge());
 		return personaModelCli;
 	}
+	public Person fromAdapterCliToDomain(PersonaModelCli personaModelCli) {
+		Person person = new Person();
+		person.setIdentification(personaModelCli.getCc());
+		person.setFirstName(personaModelCli.getNombre());
+		person.setLastName(personaModelCli.getApellido());
+		person.setAge(personaModelCli.getEdad());
+
+		if(personaModelCli.getGenero().equalsIgnoreCase("M")){
+			person.setGender(Gender.MALE);
+		} else if (personaModelCli.getGenero().equalsIgnoreCase("F")){
+			person.setGender(Gender.FEMALE);
+		} else{
+			person.setGender(Gender.OTHER);
+		}
+
+		return person;
+	}
+
 }
