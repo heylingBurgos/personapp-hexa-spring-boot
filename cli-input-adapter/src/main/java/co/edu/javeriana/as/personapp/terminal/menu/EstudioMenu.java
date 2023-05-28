@@ -2,8 +2,11 @@ package co.edu.javeriana.as.personapp.terminal.menu;
 
 import co.edu.javeriana.as.personapp.common.exceptions.InvalidOptionException;
 import co.edu.javeriana.as.personapp.terminal.adapter.EstudioInputAdapterCli;
+import co.edu.javeriana.as.personapp.terminal.model.EstudioModelCli;
+import co.edu.javeriana.as.personapp.terminal.model.PersonaModelCli;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -58,9 +61,8 @@ public class EstudioMenu {
                         estudioInputAdapterCli.historial();
                         break;
                     case OPCION_CREAR_ESTUDIO:
-                        //TODO estudioInputAdapterCli.createStudy();
+                        estudioInputAdapterCli.createStudy(createEntity(keyboard));
                         break;
-                    //TODO mas opciones
                     default:
                         log.warn("La opción elegida no es válida.");
                 }
@@ -74,7 +76,6 @@ public class EstudioMenu {
         System.out.println("----------------------");
         System.out.println(OPCION_VER_TODO + " para ver todas las personas");
         System.out.println(OPCION_CREAR_ESTUDIO + " para crear un estudio");
-        // implementar otras opciones
         System.out.println(OPCION_REGRESAR_MOTOR_PERSISTENCIA + " para regresar");
     }
 
@@ -93,5 +94,31 @@ public class EstudioMenu {
             log.warn("Solo se permiten números.");
             return leerOpcion(keyboard);
         }
+    }
+
+    private EstudioModelCli createEntity(Scanner keyboard){
+        try {
+            EstudioModelCli estudio = new EstudioModelCli();
+            System.out.println("Ingrese identificacion de la profesión: ");
+            estudio.setId_prof(keyboard.nextInt());
+            System.out.println("Ingrese identificacion de la persona: ");
+            estudio.setCc_per(keyboard.nextInt());
+            System.out.println("Ingrese fecha de graduación: ");
+            int day, month, year;
+            System.out.println("Dia: ");
+            day = keyboard.nextInt();
+            System.out.println("Mes: ");
+            month = keyboard.nextInt();
+            System.out.println("Año: ");
+            year = keyboard.nextInt();
+            estudio.setFecha(LocalDate.of(year, month, day));
+            System.out.println("Ingrese la universidad: ");
+            estudio.setUniver(keyboard.next());
+            return estudio;
+        } catch (InputMismatchException e) {
+            System.out.println("Datos incorrectos.");
+            return createEntity(keyboard);
+        }
+
     }
 }

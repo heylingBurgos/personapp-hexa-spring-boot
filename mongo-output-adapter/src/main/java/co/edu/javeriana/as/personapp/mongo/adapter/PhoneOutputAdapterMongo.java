@@ -36,10 +36,10 @@ public class PhoneOutputAdapterMongo implements PhoneOutputPort {
     }
 
     @Override
-    public Boolean delete(Integer identification) {
+    public Boolean delete(String identification) {
         log.debug("Into delete on Adapter MongoDB");
-        telefonoRepositoryMongo.deleteById(identification);
-        return telefonoRepositoryMongo.findById(identification).isEmpty();
+        telefonoRepositoryMongo.deleteById(Integer.valueOf(identification));
+        return telefonoRepositoryMongo.findById(Integer.valueOf(identification)).isEmpty();
     }
 
     @Override
@@ -50,12 +50,12 @@ public class PhoneOutputAdapterMongo implements PhoneOutputPort {
     }
 
     @Override
-    public Phone findById(Integer identification) {
+    public Phone findById(String identification) {
         log.debug("Into findById on Adapter MongoDB");
-        if (telefonoRepositoryMongo.findById(identification).isEmpty()) {
+        if (telefonoRepositoryMongo.findById(Integer.valueOf(identification)).isEmpty()) {
             return null;
         } else {
-            return telefonoMapperMongo.fromAdapterToDomain(telefonoRepositoryMongo.findById(identification).get());
+            return telefonoMapperMongo.fromAdapterToDomain(telefonoRepositoryMongo.findById(Integer.valueOf(identification)).get());
         }
     }
 }

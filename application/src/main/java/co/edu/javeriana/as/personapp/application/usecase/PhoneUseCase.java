@@ -33,7 +33,7 @@ public class PhoneUseCase implements PhoneInputPort {
     }
 
     @Override
-    public Phone edit(Integer identification, Phone phone) throws NoExistException {
+    public Phone edit(String identification, Phone phone) throws NoExistException {
         Phone oldPerson = phonePersintence.findById(identification);
         if (oldPerson != null)
             return phonePersintence.save(phone);
@@ -42,7 +42,7 @@ public class PhoneUseCase implements PhoneInputPort {
     }
 
     @Override
-    public Boolean drop(Integer identification) throws NoExistException {
+    public Boolean drop(String identification) throws NoExistException {
         Phone oldPhone = phonePersintence.findById(identification);
         if (oldPhone != null)
             return phonePersintence.delete(identification);
@@ -57,7 +57,7 @@ public class PhoneUseCase implements PhoneInputPort {
     }
 
     @Override
-    public Phone findOne(Integer identification) throws NoExistException {
+    public Phone findOne(String identification) throws NoExistException {
         Phone oldPhone = phonePersintence.findById(identification);
         if (oldPhone != null)
             return oldPhone;
@@ -70,7 +70,7 @@ public class PhoneUseCase implements PhoneInputPort {
     }
 
     @Override
-    public Person getPerson(Integer identification) throws NoExistException {
+    public Person getPerson(String identification) throws NoExistException {
         Phone phone = phonePersintence.findById(identification);
         if (phone != null)
             return phone.getOwner();

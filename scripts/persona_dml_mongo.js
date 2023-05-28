@@ -1,4 +1,4 @@
-use prueba_db
+use persona_db
 
 db.persona.insertMany([
 	{
@@ -11,7 +11,7 @@ db.persona.insertMany([
 	},
 	{
 		"_id": NumberInt(987654321),
-		"nombre": "Pepito",
+		"nombre": "Milena",
 		"apellido": "Perez",
 		"genero": "M",
 		"_class": "co.edu.javeriana.as.personapp.mongo.document.PersonaDocument"
@@ -41,3 +41,73 @@ db.persona.insertMany([
 		"_class": "co.edu.javeriana.as.personapp.mongo.document.PersonaDocument"
 	}
 ], { ordered: false })
+
+//Profesiones
+db.profesiones.insertMany([
+	{
+		"_id": 1,
+		"nom": "Ingeniería industrial",
+		"des": "Muy buena carrera.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	},
+	{
+		"_id": 2,
+		"nom": "Medicina",
+		"des": "Salvar vidas.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	},
+	{
+		"_id": 3,
+		"nom": "Comunicación social",
+		"des": "Nunca dar noticias falsas.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	},
+	{
+		"_id": 4,
+		"nom": "Arte",
+		"des": "Para explorar la creatividad.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	},
+	{
+		"_id": 5,
+		"nom": "Veterinaria",
+		"des": "Salvar las vidas de los animales es muy importante.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	}
+], { ordered: false })
+
+db.profesion.insertMany([
+	{
+		"_id": 1,
+		"nom": "Ingeniería industrial",
+		"des": "Muy buena carrera.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	},
+	{
+		"_id": 2,
+		"nom": "Medicina",
+		"des": "Salvar vidas.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	},
+	{
+		"_id": 3,
+		"nom": "Comunicación social",
+		"des": "Nunca dar noticias falsas.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	},
+	{
+		"_id": 4,
+		"nom": "Arte",
+		"des": "Para explorar la creatividad.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	},
+	{
+		"_id": 5,
+		"nom": "Veterinaria",
+		"des": "Salvar las vidas de los animales es muy importante.",
+		"_class": "co.edu.javeriana.as.personapp.mongo.document.ProfesionDocument"
+	}
+], { ordered: false })
+
+
+

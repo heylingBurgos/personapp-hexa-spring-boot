@@ -31,7 +31,7 @@ public class PhoneOutputAdapterMaria implements PhoneOutputPort {
     }
 
     @Override
-    public Boolean delete(Integer identification) {
+    public Boolean delete(String identification) {
         log.debug("Into delete on Adapter MariaDB");
         telefonoRepositoryMaria.deleteById(identification);
         return telefonoRepositoryMaria.findById(identification).isEmpty();
@@ -45,7 +45,7 @@ public class PhoneOutputAdapterMaria implements PhoneOutputPort {
     }
 
     @Override
-    public Phone findById(Integer identification) {
+    public Phone findById(String identification) {
         log.debug("Into findById on Adapter MariaDB");
         if (telefonoRepositoryMaria.findById(identification).isEmpty()) {
             return null;

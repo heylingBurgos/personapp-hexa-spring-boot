@@ -47,6 +47,7 @@ public class PersonOutputAdapterMongo implements PersonOutputPort {
 	@Override
 	public List<Person> find() {
 		log.debug("Into find on Adapter MongoDB");
+		System.out.println("entra");
 		return personaRepositoryMongo.findAll().stream().map(personaMapperMongo::fromAdapterToDomain)
 				.collect(Collectors.toList());
 	}

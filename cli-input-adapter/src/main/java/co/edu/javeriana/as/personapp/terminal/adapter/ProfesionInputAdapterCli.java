@@ -12,6 +12,7 @@ import co.edu.javeriana.as.personapp.domain.Person;
 import co.edu.javeriana.as.personapp.domain.Profession;
 import co.edu.javeriana.as.personapp.terminal.mapper.ProfesionMapperCli;
 import co.edu.javeriana.as.personapp.terminal.model.EstudioModelCli;
+import co.edu.javeriana.as.personapp.terminal.model.PersonaModelCli;
 import co.edu.javeriana.as.personapp.terminal.model.ProfesionModelCli;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,14 +51,48 @@ public class ProfesionInputAdapterCli {
                 .map(profesionMapperCli::fromDomainToAdapterCli)
                 .forEach(System.out::println);
     }
-
-    public void createProfession(ProfesionModelCli profesionModelCli, String dbOption){
-        log.info("Into crearEstudio StudyEntity in Input Adapter");
+    public void findOne(int id) {
+        log.info("Into findOne ProfessionEntity in Input Adapter");
+        try {
+            Profession profession = professionInputPort.findOne(id);
+            ProfesionModelCli profesionModelCli = profesionMapperCli.fromDomainToAdapterCli(profession);
+            System.out.println("Profession found:\n" + profesionModelCli.toString());
+        } catch (Exception e) {
+            log.warn(e.getMessage());
+            System.out.println("Error.");
+        }
+    }
+    public void createProfession(ProfesionModelCli profesionModelCli){
+        log.info("Into crearProfession StudyEntity in Input Adapter");
         try{
-            setProfessionOutputPortInjection(dbOption);
             professionInputPort.create(profesionMapperCli.fromAdapterCliToDomain(profesionModelCli));
             System.out.println("Profession created.");
         }catch (Exception e){
+            log.warn(e.getMessage());
+            System.out.println("Error.");
+        }
+    }
+
+    public void deleteProfession(int id) {
+        log.info("Into deleteProfession PersonaEntity in Input Adapter");
+        try {
+            if (professionInputPort.drop(id)){
+                System.out.println("Profession deleted.");
+            }else{
+                System.out.println("Error at delete.");
+            }
+        } catch (Exception e) {
+            log.warn(e.getMessage());
+            System.out.println("Error.");
+        }
+    }
+
+    public void editPerson(ProfesionModelCli profesionModelCli) {
+        log.info("Into editProffesion PersonaEntity in Input Adapter");
+        try {
+            professionInputPort.edit(profesionModelCli.getId(),profesionMapperCli.fromAdapterCliToDomain(profesionModelCli));
+            System.out.println("Profession edited.");
+        } catch (Exception e) {
             log.warn(e.getMessage());
             System.out.println("Error.");
         }
