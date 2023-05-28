@@ -112,8 +112,10 @@ public class EstudioMenu {
             System.out.println("Año: ");
             year = keyboard.nextInt();
             estudio.setFecha(LocalDate.of(year, month, day));
+            System.out.println(estudio.getFecha());
+            keyboard.nextLine();
             System.out.println("Ingrese la universidad: ");
-            estudio.setUniver(keyboard.next());
+            estudio.setUniver(keyboard.nextLine());
             return estudio;
         } catch (InputMismatchException e) {
             System.out.println("Datos incorrectos.");

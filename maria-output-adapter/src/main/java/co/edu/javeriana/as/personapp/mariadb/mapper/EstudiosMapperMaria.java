@@ -43,15 +43,20 @@ public class EstudiosMapperMaria {
 
 	public Study fromAdapterToDomain(EstudiosEntity estudiosEntity) {
 		Study study = new Study();
-		//study.setPerson(personaMapperMaria.fromAdapterToDomain(estudiosEntity.getPersona()));
+		study.setPerson(personaMapperMaria.fromAdapterToDomain(estudiosEntity.getPersona()));
 		study.setProfession(profesionMapperMaria.fromAdapterToDomain(estudiosEntity.getProfesion()));
-		//study.setGraduationDate(validateGraduationDate(estudiosEntity.getFecha()));
+		study.setGraduationDate(validateGraduationDate(estudiosEntity.getFecha()));
 		study.setUniversityName(validateUniversityName(estudiosEntity.getUniver()));
-		return null;
+		return study;
 	}
 
 	private LocalDate validateGraduationDate(Date fecha) {
-		return fecha != null ? fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() : null;
+		if (fecha != null){
+			String fech = fecha.toString();
+			String[] fechitas = fech.split("-");
+			return LocalDate.of(Integer.parseInt(fechitas[0]), Integer.parseInt(fechitas[1]), Integer.parseInt(fechitas[1]));
+		}
+		return null;
 	}
 
 	private String validateUniversityName(String univer) {
