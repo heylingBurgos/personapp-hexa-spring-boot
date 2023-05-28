@@ -3,6 +3,7 @@ package co.edu.javeriana.as.personapp.terminal.adapter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import co.edu.javeriana.as.personapp.domain.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -55,11 +56,21 @@ public class PersonaInputAdapterCli {
 	        .map(personaMapperCli::fromDomainToAdapterCli)
 	        .forEach(System.out::println);
 	}
-
-	public void createPerson(PersonaModelCli personaModelCli, String dbOption) {
-		log.info("Into crear PersonaEntity in Input Adapter");
+	public void findOne(int identification) {
+		log.info("Into findOne PersonaEntity in Input Adapter");
 		try {
-			setPersonOutputPortInjection(dbOption);
+			Person person = personInputPort.findOne(identification);
+			PersonaModelCli personaModelCli = personaMapperCli.fromDomainToAdapterCli(person);
+			System.out.println("Person found:\n" + personaModelCli.toString());
+		} catch (Exception e) {
+			log.warn(e.getMessage());
+			System.out.println("Error.");
+		}
+	}
+
+	public void createPerson(PersonaModelCli personaModelCli) {
+		log.info("Into createPerson PersonaEntity in Input Adapter");
+		try {
 			personInputPort.create(personaMapperCli.fromAdapterCliToDomain(personaModelCli));
 			System.out.println("Person created.");
 		} catch (Exception e) {
@@ -68,4 +79,28 @@ public class PersonaInputAdapterCli {
 		}
 	}
 
+	public void deletePerson(int identification) {
+		log.info("Into deletePerson PersonaEntity in Input Adapter");
+		try {
+			if (personInputPort.drop(identification)){
+				System.out.println("Person deleted.");
+			}else{
+				System.out.println("Error at delete.");
+			}
+		} catch (Exception e) {
+			log.warn(e.getMessage());
+			System.out.println("Error.");
+		}
+	}
+
+	public void editPerson(PersonaModelCli personaModelCli) {
+		log.info("Into editPerson PersonaEntity in Input Adapter");
+		try {
+			personInputPort.edit(personaModelCli.getCc(),personaMapperCli.fromAdapterCliToDomain(personaModelCli));
+			System.out.println("Person edited.");
+		} catch (Exception e) {
+			log.warn(e.getMessage());
+			System.out.println("Error.");
+		}
+	}
 }

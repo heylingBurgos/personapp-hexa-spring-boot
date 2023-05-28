@@ -14,8 +14,10 @@ import co.edu.javeriana.as.personapp.common.exceptions.InvalidOptionException;
 import co.edu.javeriana.as.personapp.common.setup.DatabaseOption;
 import co.edu.javeriana.as.personapp.domain.Person;
 import co.edu.javeriana.as.personapp.domain.Profession;
+import co.edu.javeriana.as.personapp.domain.Study;
 import co.edu.javeriana.as.personapp.terminal.mapper.EstudioMapperCli;
 import co.edu.javeriana.as.personapp.terminal.model.EstudioModelCli;
+import co.edu.javeriana.as.personapp.terminal.model.PersonaModelCli;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -76,10 +78,10 @@ public class EstudioInputAdapterCli {
                 .forEach(System.out::println);
     }
 
-    public void createStudy(EstudioModelCli estudioModelCli, String dbOption){
+
+    public void createStudy(EstudioModelCli estudioModelCli){
         log.info("Into crearEstudio StudyEntity in Input Adapter");
         try{
-            setStudyOutputPortInjection(dbOption);
             Person person = personInputPort.findOne(estudioModelCli.getCc_per());
             Profession profession = professionInputPort.findOne(estudioModelCli.getId_prof());
             studyInputPort.create(estudioMapperCli.fromAdapterCliToDomain(estudioModelCli, person, profession));
@@ -89,4 +91,5 @@ public class EstudioInputAdapterCli {
             System.out.println("Error.");
         }
     }
+
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @Port
 public interface PhoneOutputPort {
     public Phone save(Phone person);
-    public Boolean delete(Integer identification);
+    public Boolean delete(String number);
     public List<Phone> find();
-    public Phone findById(Integer identification);
+    public Phone findById(String number);
 }

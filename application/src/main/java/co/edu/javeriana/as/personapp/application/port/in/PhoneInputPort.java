@@ -15,15 +15,15 @@ public interface PhoneInputPort {
 
     public Phone create(Phone phone);
 
-    public Phone edit(Integer identification, Phone phone) throws NoExistException;
+    public Phone edit(String number, Phone phone) throws NoExistException;
 
-    public Boolean drop(Integer identification) throws NoExistException;
+    public Boolean drop(String number) throws NoExistException;
 
     public List<Phone> findAll();
 
-    public Phone findOne(Integer identification) throws NoExistException;
+    public Phone findOne(String number) throws NoExistException;
 
     public Integer count();
 
-    public Person getPerson(Integer identification) throws NoExistException;
+    public Person getPerson(String identification) throws NoExistException;
 }

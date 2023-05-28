@@ -9,9 +9,9 @@ import co.edu.javeriana.as.personapp.terminal.model.TelefonoModelCli;
 public class TelefonoMapperCli {
     public TelefonoModelCli fromDomainToAdapterCli(Phone phone) {
         TelefonoModelCli telefonoModelCli = new TelefonoModelCli();
-        telefonoModelCli.setDuenio(phone.getOwner().getIdentification());
-        telefonoModelCli.setOper(phone.getCompany());
         telefonoModelCli.setNum(phone.getNumber());
+        telefonoModelCli.setOper(phone.getCompany());
+        telefonoModelCli.setDuenio(phone.getOwner().getIdentification());
         return telefonoModelCli;
     }
 

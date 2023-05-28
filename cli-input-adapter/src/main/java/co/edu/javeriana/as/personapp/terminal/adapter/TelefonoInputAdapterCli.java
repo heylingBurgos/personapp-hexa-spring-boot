@@ -12,14 +12,19 @@ import co.edu.javeriana.as.personapp.common.annotations.Adapter;
 import co.edu.javeriana.as.personapp.common.exceptions.InvalidOptionException;
 import co.edu.javeriana.as.personapp.common.setup.DatabaseOption;
 import co.edu.javeriana.as.personapp.domain.Person;
+import co.edu.javeriana.as.personapp.domain.Phone;
 import co.edu.javeriana.as.personapp.domain.Profession;
 import co.edu.javeriana.as.personapp.terminal.mapper.EstudioMapperCli;
 import co.edu.javeriana.as.personapp.terminal.mapper.TelefonoMapperCli;
 import co.edu.javeriana.as.personapp.terminal.model.EstudioModelCli;
+import co.edu.javeriana.as.personapp.terminal.model.PersonaModelCli;
 import co.edu.javeriana.as.personapp.terminal.model.TelefonoModelCli;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 @Slf4j
 @Adapter
@@ -66,16 +71,54 @@ public class TelefonoInputAdapterCli {
                 .forEach(System.out::println);
     }
 
-    public void createPhone(TelefonoModelCli telefonoModelCli, String dbOption){
-        log.info("Into crearEstudio StudyEntity in Input Adapter");
+    public void createPhone(TelefonoModelCli telefonoModelCli){
+        log.info("Into phoneEntity in Input Adapter");
         try{
-            setPhoneOutputPortInjection(dbOption);
             Person person = personInputPort.findOne(telefonoModelCli.getDuenio());
             phoneInputPort.create(telefonoMapperCli.fromAdapterCliToDomain(telefonoModelCli, person));
-            System.out.println("Study created.");
+            System.out.println("Phone created.");
         }catch (Exception e){
             log.warn(e.getMessage());
             System.out.println("Error.");
         }
     }
+
+    public void findOne(String number) {
+        log.info("Into findOne PersonaEntity in Input Adapter");
+        try {
+            Phone phone = phoneInputPort.findOne(number);
+            TelefonoModelCli telefonoModelCli = telefonoMapperCli.fromDomainToAdapterCli(phone);
+            System.out.println("Phone found:\n" + telefonoModelCli.toString());
+        } catch (Exception e) {
+            log.warn(e.getMessage());
+            System.out.println("Error no se encontró.");
+        }
+    }
+    public void deletePhone(String number) {
+        log.info("Into deletePhone PersonaEntity in Input Adapter");
+        try {
+            if (phoneInputPort.drop(number)){
+                System.out.println("Phone deleted.");
+            }else{
+                System.out.println("Error at delete.");
+            }
+        } catch (Exception e) {
+            log.warn(e.getMessage());
+            System.out.println("Error.");
+        }
+    }
+
+    public void editPhone(TelefonoModelCli telefonoModelCli) {
+        log.info("Into editPerson PersonaEntity in Input Adapter");
+        try {
+            Person owner = personInputPort.findOne(telefonoModelCli.getDuenio());
+            phoneInputPort.edit(telefonoModelCli.getNum(),telefonoMapperCli.fromAdapterCliToDomain(telefonoModelCli, owner));
+            System.out.println("Person edited.");
+        } catch (Exception e) {
+            log.warn(e.getMessage());
+            System.out.println("Error.");
+        }
+    }
+
+
 }
