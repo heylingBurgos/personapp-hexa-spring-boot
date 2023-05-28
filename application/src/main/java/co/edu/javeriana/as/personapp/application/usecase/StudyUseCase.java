@@ -28,9 +28,9 @@ public class StudyUseCase implements StudyInputPort {
     }
 
     @Override
-    public Study create(Study person) {
+    public Study create(Study study) {
         log.debug("Into create on Application Domain");
-        return studyPersintence.save(person);
+        return studyPersintence.save(study);
     }
 
     @Override
