@@ -1,6 +1,7 @@
 # Laboratorio Arquitectura Hexagonal
 ____________________________________________
 **Descripción**
+
 En este proyecto se encuentra la implementación la cual permite gestionar (CRUD) las entidades Persona, profesión, estudios y teléfono usando la arquitectura hexagonal.
 
 ![image](https://github.com/heylingBurgos/personapp-hexa-spring-boot/assets/70115518/9899593b-9bd0-4b76-9aff-619b73e502f8)
