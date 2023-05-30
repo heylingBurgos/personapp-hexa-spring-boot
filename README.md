@@ -1,16 +1,23 @@
-# personapp-hexa-spring-boot
-Plantilla Laboratorio Arquitectura Limpia
+# Laboratorio Arquitectura Hexagonal
+____________________________________________
+**Descripción**
+En este proyecto se encuentra la implementación la cual permite gestionar (CRUD) las entidades Persona, profesión, estudios y teléfono usando la arquitectura hexagonal.
 
-Instalar MariaDB en puerto 3307
-Instalar MongoDB en puerto 27017
+![image](https://github.com/heylingBurgos/personapp-hexa-spring-boot/assets/70115518/9899593b-9bd0-4b76-9aff-619b73e502f8)
 
-Ejecutar los scripts en las dbs
+______________________________________________
+**Configuración**
 
-el adaptador rest corre en el puerto 3000
-el swagger en http://localhost:3000/swagger-ui.html
+* Instalar MariaDB y en la base de datos Hedidi configurar el puerto 3307.
+* Instalar MongoDB y en MongoDB Compass configurar el puerto 27017.
+* Realizar los query usando los files *ddl* que se encuentran en la carpeta *scripts* para Mongodb y Mariadb.
+_______________________________________________________
+**Ejecutar**
 
-Son dos adaptadores de entrada, 2 SpringApplication diferentes
+* Para ejecutar el CLI solo se necesita ejecutar el archivo *PersonAppCli* la cual podrá funcionar en la terminal o línea de comandos.
+* Para ejecutar el API REST solo solo se necesita ejecutar el archivo *PersonAppRestApi* la cual podrá ver su funcionamiento usando Swagger en el puerto 3000 o en http://localhost:3000/swagger-ui.html.
+__________________________________________________________
+**Realizado por**
 
-Deben configurar el lombok en sus IDEs
-
-Pueden hacer Fork a este repo, no editar este repositorio
+* Heyling Burgos
+* Jose López García
