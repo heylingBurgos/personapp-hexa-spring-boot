@@ -22,5 +22,4 @@
 			<artifactId>common</artifactId>
 			<version>${revision}</version>
 		</dependency>
-	</dependencies>
 </project>

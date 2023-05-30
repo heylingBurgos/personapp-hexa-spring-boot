@@ -101,8 +101,6 @@ public class TelefonoInputAdapterRest {
         }
     }
 
-
-
     public TelefonoResponse deletePhone(String database, String number) {
         try{
             setPhoneOutputPortInjection(database);
@@ -124,6 +122,4 @@ public class TelefonoInputAdapterRest {
             return null;
         }
     }
-
-
 }
